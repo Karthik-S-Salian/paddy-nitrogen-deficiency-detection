@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile,status,HTTPException,Form,File
+from fastapi import FastAPI, UploadFile,status,HTTPException,File
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from schemas import PredictResponse
@@ -23,9 +23,9 @@ app.add_middleware(
 
 @app.post("/predict",response_model=PredictResponse)
 async def predict(image:UploadFile = File(...)):
-    cls = predict_class(await image.read())
+    message = predict_class(await image.read())
     return {
-        'cls': cls
+        'message': message
     }
 
 if __name__ == "__main__":
