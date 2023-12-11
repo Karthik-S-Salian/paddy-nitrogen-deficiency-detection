@@ -33,7 +33,7 @@ class DisplayPictureScreen extends StatelessWidget {
 
       print(response.body);
       final data = jsonDecode(response.body) as Map<String, dynamic>;
-      return data["cls"].toString();
+      return data["message"].toString();
     } catch (e) {
       print('Error: $e');
       return null;
@@ -46,7 +46,7 @@ class DisplayPictureScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("display")),
+        appBar: AppBar(title: const Text("display")),
         body: Column(
           children: [
             Expanded(

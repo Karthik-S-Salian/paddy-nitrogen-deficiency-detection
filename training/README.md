@@ -1,0 +1,1 @@
+dataset: https://www.kaggle.com/datasets/myominhtet/nitrogen-deficiency-for-rice-crop/
