@@ -46,15 +46,13 @@ def convert_to_bgr(normalized_hue, normalized_saturation, normalized_value):
     normalized_bgr = cv2.cvtColor(normalized_hsv.astype(np.uint8), cv2.COLOR_HSV2BGR)
     return normalized_bgr
 
-def hsv_normalization(image):
-    hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+def hsv_normalization(hsv_image):
     hsv_image = hsv_image.astype(np.float32)
     normalized_hue = normalize_hue(hsv_image[:, :, 0])
     normalized_saturation, normalized_value = normalize_saturation_value(hsv_image[:, :, 1], hsv_image[:, :, 2])
     # Convert back to BGR
-    normalized_image = convert_to_bgr(normalized_hue, normalized_saturation, normalized_value)
-
-    return normalized_image
+    normalized_hsv_image = np.stack([normalized_hue, normalized_saturation, normalized_value], axis=-1).astype(np.uint8)
+    return normalized_hsv_image
     
 def white_balance(image):
     """
